@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.io.IOException;
 
-public class ContactsList extends Activity {
+
+public class ContactsListActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,7 +16,11 @@ public class ContactsList extends Activity {
         setContentView(R.layout.activity_contacts_list);
 
         // Retrieve JSON data from endpoint
-        ContactsData contactsData = new ContactsData();
+        try {
+            ContactsData contactsData = new ContactsData();
+        } catch (IOException e) {
+            // Print a failure message
+        }
 
         // Populate ListView
     }
