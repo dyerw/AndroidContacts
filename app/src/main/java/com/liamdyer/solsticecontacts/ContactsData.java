@@ -2,6 +2,7 @@ package com.liamdyer.solsticecontacts;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -15,7 +16,7 @@ import java.net.URL;
  */
 public class ContactsData {
     static final String jsonEndpoint = "https://solstice.applauncher.com/external/contacts.json";
-    Contact[] contacts;
+    Contact contacts[];
 
     public ContactsData() throws IOException {
         // Get the JSON data from the URL
@@ -25,7 +26,7 @@ public class ContactsData {
         // an array of Contact objects
         ObjectMapper mapper = new ObjectMapper();
         try {
-            this.contacts = mapper.readValue(new URL(jsonEndpoint), Contact[].class);
+            this.contacts = mapper.readValue(data, Contact[].class);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -33,12 +34,19 @@ public class ContactsData {
 
     //TODO: Move all this to a utility class
     // Reads an InputStream and converts it to a String.
-    public String readIt(InputStream stream, int len) throws IOException, UnsupportedEncodingException {
-        Reader reader = null;
-        reader = new InputStreamReader(stream, "UTF-8");
-        char[] buffer = new char[len];
-        reader.read(buffer);
-        return new String(buffer);
+    public String readIt(InputStream stream) throws IOException, UnsupportedEncodingException {
+        Reader isreader = new InputStreamReader(stream, "UTF-8");
+        BufferedReader reader = new BufferedReader(isreader);
+        StringBuilder out = new StringBuilder();
+        String line;
+
+        while ((line = reader.readLine()) != null) {
+            line += "\n";
+            out.append(line);
+        }
+        reader.close();
+
+        return out.toString();
     }
 
     /**
@@ -64,7 +72,7 @@ public class ContactsData {
             is = conn.getInputStream();
 
             // Convert stream to string
-            json = readIt(is, 9512); //TODO: don't hardcode this length
+            json = readIt(is);
 
         } catch (Exception e) {
             e.printStackTrace();

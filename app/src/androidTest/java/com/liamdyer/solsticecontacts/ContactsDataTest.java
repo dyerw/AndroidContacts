@@ -20,16 +20,18 @@ public class ContactsDataTest extends AndroidTestCase {
      */
     public void testGetJson() throws IOException {
         String data = contactsData.getJson();
-        System.out.println(data);
-        assertEquals(9512, data.length());
+        // Remove whitespace for character counting
+        data = data.replaceAll("\\s+","");
+        assertEquals(6876, data.length());
     }
 
     /**
      * Make sure our list is populated with the correct number of
-     * entries.
+     * entries. We expect there to be 20 contacts since that's
+     * what's present in the JSON data.
      */
     public void testContactsPopulated() {
-        assertEquals(8, 8);
+        assertEquals(contactsData.contacts.length, 20);
     }
 
 }

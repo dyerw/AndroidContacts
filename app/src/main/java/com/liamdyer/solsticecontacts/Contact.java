@@ -9,6 +9,11 @@ public class Contact {
     String name, company, detailsURL, smallImageURL;
     Date birthdate;
     Phone phone;
+    int employeeId;
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
 
     public String getName() {
         return name;
