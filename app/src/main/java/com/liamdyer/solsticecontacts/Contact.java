@@ -39,26 +39,6 @@ public class Contact {
         return phone;
     }
 
-//    /**
-//     *
-//     * @param name the name of the contact
-//     * @param company the company the contact works for
-//     * @param detailsURL a link to more information about the contact
-//     * @param smallImageURL a link to a small picture for the contact
-//     * @param birthdate the date the contact was born
-//     * @param phone the phone number of the contact
-//     */
-//    public Contact(String name, String company,
-//                   String detailsURL, String smallImageURL,
-//                   Date birthdate, Phone phone) {
-//        this.name = name;
-//        this.company = company;
-//        this.detailsURL = detailsURL;
-//        this.smallImageURL = smallImageURL;
-//        this.birthdate = birthdate;
-//        this.phone = phone;
-//    }
-
     static class Phone {
         String work, home, mobile;
 
