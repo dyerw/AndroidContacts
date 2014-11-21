@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -120,24 +121,32 @@ public class ContactDetailActivity extends Activity {
         DateFormat df = new SimpleDateFormat("MMMM d, y");
         birthdayView.setText(df.format(contact.getBirthdate()));
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.contact_detail, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        // Populate only the numbers that exist
+        if (contact.getPhone().getHome() != null) {
+            addNumber("Home", contact.getPhone().getHome());
         }
-        return super.onOptionsItemSelected(item);
+
+        if (contact.getPhone().getWork() != null) {
+            addNumber("Work", contact.getPhone().getWork());
+        }
+
+        if (contact.getPhone().getMobile() != null) {
+            addNumber("Mobile", contact.getPhone().getMobile());
+        }
+    }
+
+    /**
+     * Adds a phone number to the UI for a contact
+     * @param name the name of the number
+     * @param number the telephone number
+     */
+    private void addNumber(String name, String number) {
+        LinearLayout layout = (LinearLayout) this.findViewById(R.id.contact_detail_phone_layout);
+        TextView numView = new TextView(this);
+        numView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
+
+        numView.setText(number + " " + name);
+        layout.addView(numView);
     }
 }
