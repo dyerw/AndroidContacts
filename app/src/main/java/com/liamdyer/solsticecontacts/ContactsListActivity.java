@@ -1,28 +1,120 @@
 package com.liamdyer.solsticecontacts;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.io.IOException;
 
 
 public class ContactsListActivity extends Activity {
+    static final String jsonEndpoint = "https://solstice.applauncher.com/external/contacts.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts_list);
 
-        // Retrieve JSON data from endpoint
+        ProgressDialog dialog = new ProgressDialog(this);
         try {
-            ContactsData contactsData = new ContactsData();
-        } catch (IOException e) {
-            // Print a failure message
+
+            PopulateContactsTask task = new PopulateContactsTask(dialog);
+            task.execute(jsonEndpoint);
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
+
+    /**
+     * An asynchronous task that makes a network call to the contacts JSON
+     * and then uses that data to populate the UI.
+     */
+    class PopulateContactsTask extends AsyncTask<String, Void, String> {
+        ProgressDialog dialog;
+
+        /**
+         *
+         * @param dialog dialog object we use to update our progress to the user
+         */
+        public PopulateContactsTask(ProgressDialog dialog) {
+            this.dialog = dialog;
+        }
+
+        /**
+         * Let's the user know we're downloading the contacts
+         * from the endpoint.
+         */
+        @Override
+        protected void onPreExecute() {
+            dialog.setTitle("Retrieving Contacts...");
+            dialog.setMessage("Please wait...");
+            dialog.setIndeterminate(true);
+            dialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... urls) {
+            // We only need one url despite having varargs
+            String url = urls[0];
+
+            try {
+                return NetworkUtils.getJson(url);
+            } catch (Exception e) {
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String json) {
+            dialog.dismiss();
+            populateContacts(json);
+        }
+    }
+
+    /**
+     * Given a json string representing a list of contacts populates
+     * the list view in the activity with that data.
+     * @param data a json string list of contacts
+     */
+    private void populateContacts(String data) {
+        // Parse JSON into an object
+        ContactsData contactsData = null;
+        try {
+            contactsData = new ContactsData(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // If we weren't able to parse the JSON, let the user
+        // know the data was corrupt
+        if (contactsData == null) {
+            //TODO: Update UI w/ error
+            return;
         }
 
         // Populate ListView
+        ArrayAdapter<Contact> mContactsAdapter = new ArrayAdapter<Contact>(
+                // The context of the current activity
+                this,
+                // The list item layout to populate
+                R.layout.list_item_contact,
+                // The text view id to populate
+                R.id.list_item_contact_textview,
+                // The data to populate with
+                contactsData.contacts);
+
+        ListView listView = (ListView) findViewById(R.id.listview_contacts);
+        listView.setAdapter(mContactsAdapter);
     }
 
 

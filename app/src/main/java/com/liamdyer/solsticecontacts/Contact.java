@@ -11,6 +11,10 @@ public class Contact {
     Phone phone;
     int employeeId;
 
+    public String toString() {
+        return this.name + " " + phone.work;
+    }
+
     public int getEmployeeId() {
         return employeeId;
     }
