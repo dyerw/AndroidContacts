@@ -1,19 +1,15 @@
 package com.liamdyer.solsticecontacts;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.io.IOException;
 
-
-public class ContactsListActivity extends Activity {
+public class ContactsListActivity extends ListActivity {
     static final String jsonEndpoint = "https://solstice.applauncher.com/external/contacts.json";
 
     @Override
@@ -21,6 +17,7 @@ public class ContactsListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts_list);
 
+        // Populate the contacts list with data
         ProgressDialog dialog = new ProgressDialog(this);
         try {
 
@@ -109,7 +106,7 @@ public class ContactsListActivity extends Activity {
                 // The data to populate with
                 contactsData.contacts);
 
-        ListView listView = (ListView) findViewById(R.id.listview_contacts);
+        ListView listView = this.getListView();
         listView.setAdapter(mContactsAdapter);
     }
 
