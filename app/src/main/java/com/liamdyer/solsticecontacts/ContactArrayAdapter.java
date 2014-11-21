@@ -1,0 +1,39 @@
+package com.liamdyer.solsticecontacts;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+/**
+ * Adapts an array of contacts into a list view.
+ */
+public class ContactArrayAdapter extends ArrayAdapter<Contact> {
+    private final Context context;
+    private final Contact[] contacts;
+
+    public ContactArrayAdapter(Context context, Contact[] contacts) {
+        super(context, R.layout.list_item_contact, contacts);
+        this.context = context;
+        this.contacts = contacts;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        //TODO: Use ViewHolder for smoother scrolling
+        View contactView = inflater.inflate(R.layout.list_item_contact, parent, false);
+        TextView nameView = (TextView) contactView.findViewById(R.id.list_item_contact_name_textview);
+        TextView phoneView = (TextView) contactView.findViewById(R.id.list_item_contact_phone_textview);
+
+        Contact contact = contacts[position];
+        nameView.setText(contact.getName());
+        phoneView.setText(contact.getPhone().getHome());
+
+        return contactView;
+    }
+}

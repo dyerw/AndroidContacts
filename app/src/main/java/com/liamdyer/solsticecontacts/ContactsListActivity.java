@@ -103,13 +103,9 @@ public class ContactsListActivity extends Activity {
         }
 
         // Populate ListView
-        ArrayAdapter<Contact> mContactsAdapter = new ArrayAdapter<Contact>(
+        ContactArrayAdapter mContactsAdapter = new ContactArrayAdapter(
                 // The context of the current activity
                 this,
-                // The list item layout to populate
-                R.layout.list_item_contact,
-                // The text view id to populate
-                R.id.list_item_contact_textview,
                 // The data to populate with
                 contactsData.contacts);
 
