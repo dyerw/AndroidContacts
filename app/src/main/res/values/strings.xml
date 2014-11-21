@@ -4,5 +4,6 @@
     <string name="app_name">Solstice Contacts</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="sm_pic_desc">A small photo of the contact</string>
 
 </resources>
