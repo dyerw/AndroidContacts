@@ -108,29 +108,34 @@ public class ContactDetailActivity extends Activity {
         }
 
         // Populate the rest of the data
+
+        // Get all the views by their ID
         TextView addressView = (TextView) this.findViewById(R.id.contact_detail_address);
         TextView cityView = (TextView) this.findViewById(R.id.contact_detail_city);
         TextView birthdayView = (TextView) this.findViewById(R.id.contact_detail_birthday);
         TextView emailView = (TextView) this.findViewById(R.id.contact_detail_email);
 
+        // Populate the address
         addressView.setText(contactDetail.getAddress().getStreet());
         cityView.setText(contactDetail.getAddress().getCity() + ", " + contactDetail.getAddress().getState());
 
+        // Populate the email
         emailView.setText(contactDetail.getEmail());
 
+        // Populate the birthday, formatting it from a Date
         DateFormat df = new SimpleDateFormat("MMMM d, y");
         birthdayView.setText(df.format(contact.getBirthdate()));
 
         // Populate only the numbers that exist
-        if (contact.getPhone().getHome() != null) {
+        if (contact.getPhone().hasNumber("home")) {
             addNumber("Home", contact.getPhone().getHome());
         }
 
-        if (contact.getPhone().getWork() != null) {
+        if (contact.getPhone().hasNumber("work")) {
             addNumber("Work", contact.getPhone().getWork());
         }
 
-        if (contact.getPhone().getMobile() != null) {
+        if (contact.getPhone().hasNumber("mobile")) {
             addNumber("Mobile", contact.getPhone().getMobile());
         }
     }

@@ -80,6 +80,7 @@
             <TextView
                 android:id="@+id/contact_detail_phone_label"
                 android:textStyle="bold"
+                android:paddingTop="20dp"
                 android:text="@string/phone_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -88,6 +89,8 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:id="@+id/contact_detail_phone_layout"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></LinearLayout>
 
@@ -95,17 +98,20 @@
             <TextView
                 android:id="@+id/contact_detail_address_label"
                 android:textStyle="bold"
+                android:paddingTop="10dp"
                 android:text="@string/address_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/contact_detail_address"
+                android:paddingTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/contact_detail_city"
+                android:paddingBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -113,18 +119,22 @@
             <TextView
                 android:id="@+id/contact_detail_birthday_label"
                 android:textStyle="bold"
+                android:paddingTop="10dp"
                 android:text="@string/birthday_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/contact_detail_birthday"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <!-- Email -->
             <TextView
                 android:id="@+id/contact_detail_email_label"
+                android:paddingTop="10dp"
                 android:textStyle="bold"
                 android:text="@string/email_label"
                 android:layout_width="wrap_content"
@@ -132,6 +142,7 @@
 
             <TextView
                 android:id="@+id/contact_detail_email"
+                android:paddingTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

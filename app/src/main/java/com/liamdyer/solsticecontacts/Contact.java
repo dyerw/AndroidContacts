@@ -58,5 +58,18 @@ public class Contact implements Serializable {
         public String getMobile() {
             return mobile;
         }
+
+        public boolean hasNumber(String name) {
+            if (name.equals("work")) {
+                return !(this.getWork() == null || this.getWork().equals(""));
+            }
+            if (name.equals("home")) {
+                return !(this.getHome() == null || this.getHome().equals(""));
+            }
+            if (name.equals("mobile")) {
+                return !(this.getMobile() == null || this.getMobile().equals(""));
+            }
+            return false;
+        }
     }
 }
