@@ -19,8 +19,7 @@ public class ContactDetailActivity extends Activity {
         Intent intent = getIntent();
         Contact contact = (Contact) intent.getSerializableExtra("contact");
 
-        TextView textView = (TextView) findViewById(R.id.contact_detail_name);
-        textView.setText(contact.getName());
+
     }
 
 
