@@ -43,29 +43,4 @@ public class ContactArrayAdapter extends ArrayAdapter<Contact> {
         return contactView;
     }
 
-    /**
-     * A task to asynchronously download the contact images to display to the user
-     */
-    class PopulateImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView imageView;
-
-        public PopulateImageTask(ImageView imageView) {
-            this.imageView = imageView;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            try {
-                return NetworkUtils.downloadImage(urls[0]);
-            } catch (Exception e) {
-                //TODO: populate w/ default image
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            imageView.setImageBitmap(result);
-        }
-    }
 }

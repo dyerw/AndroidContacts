@@ -6,7 +6,7 @@ package com.liamdyer.solsticecontacts;
 public class ContactDetail {
     int employeeId;
     boolean favorite;
-    String largeImageUrl;
+    String largeImageURL;
     String email;
     String website;
     Address address;
@@ -57,8 +57,8 @@ public class ContactDetail {
         return favorite;
     }
 
-    public String getLargeImageUrl() {
-        return largeImageUrl;
+    public String getLargeImageURL() {
+        return largeImageURL;
     }
 
     public String getEmail() {

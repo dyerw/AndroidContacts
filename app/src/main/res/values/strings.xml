@@ -7,4 +7,8 @@
     <string name="sm_pic_desc">A small photo of the contact</string>
     <string name="title_activity_contact_detail">ContactDetailActivity</string>
 
+    <!-- Field Labels -->
+    <string name="name_label">Name</string>
+    <string name="company_label">Company</string>
+
 </resources>

@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,7 +46,7 @@ public class ContactsListActivity extends ListActivity {
          *
          * @param dialog dialog object we use to update our progress to the user
          */
-        public PopulateContactsTask(ProgressDialog dialog) {
+        PopulateContactsTask(ProgressDialog dialog) {
             this.dialog = dialog;
         }
 
