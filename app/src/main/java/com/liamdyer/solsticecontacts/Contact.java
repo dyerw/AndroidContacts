@@ -1,11 +1,12 @@
 package com.liamdyer.solsticecontacts;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Represents the attributes of a single contact.
  */
-public class Contact {
+public class Contact implements Serializable {
     String name, company, detailsURL, smallImageURL;
     Date birthdate;
     Phone phone;
@@ -43,7 +44,7 @@ public class Contact {
         return phone;
     }
 
-    static class Phone {
+    static class Phone implements Serializable {
         String work, home, mobile;
 
         public String getWork() {

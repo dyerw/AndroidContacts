@@ -2,15 +2,19 @@ package com.liamdyer.solsticecontacts;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 
 
 public class ContactsListActivity extends ListActivity {
     static final String jsonEndpoint = "https://solstice.applauncher.com/external/contacts.json";
+    ContactsData contactsData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +89,6 @@ public class ContactsListActivity extends ListActivity {
      */
     private void populateContacts(String data) {
         // Parse JSON into an object
-        ContactsData contactsData = null;
         try {
             contactsData = new ContactsData(data);
         } catch (Exception e) {
@@ -108,6 +111,17 @@ public class ContactsListActivity extends ListActivity {
 
         ListView listView = this.getListView();
         listView.setAdapter(mContactsAdapter);
+    }
+
+    /**
+     * Upon a list item being clicked a new activity is launched to show
+     * details for that contact.
+     */
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        Intent intent = new Intent(this, ContactDetailActivity.class);
+        intent.putExtra("contact", contactsData.contacts[position]);
+        startActivity(intent);
     }
 
 
