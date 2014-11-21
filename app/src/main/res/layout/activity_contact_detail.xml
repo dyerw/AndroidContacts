@@ -70,6 +70,73 @@
 
         </LinearLayout>
 
+        <!-- Contains the rest of the info -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Phone Numbers -->
+            <TextView
+                android:id="@+id/contact_detail_phone_label"
+                android:textStyle="bold"
+                android:text="@string/phone_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <!-- This will be dynamically filled with available numbers -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/contact_detail_phone_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></LinearLayout>
+
+            <!-- Address -->
+            <TextView
+                android:id="@+id/contact_detail_address_label"
+                android:textStyle="bold"
+                android:text="@string/address_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/contact_detail_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/contact_detail_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <!-- Birthday -->
+            <TextView
+                android:id="@+id/contact_detail_birthday_label"
+                android:textStyle="bold"
+                android:text="@string/birthday_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/contact_detail_birthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <!-- Email -->
+            <TextView
+                android:id="@+id/contact_detail_email_label"
+                android:textStyle="bold"
+                android:text="@string/email_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/contact_detail_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 

@@ -10,5 +10,9 @@
     <!-- Field Labels -->
     <string name="name_label">Name</string>
     <string name="company_label">Company</string>
+    <string name="phone_label">Phone</string>
+    <string name="email_label">Email</string>
+    <string name="birthday_label">Birthday</string>
+    <string name="address_label">Address</string>
 
 </resources>

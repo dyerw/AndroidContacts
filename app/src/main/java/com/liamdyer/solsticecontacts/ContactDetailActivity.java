@@ -13,6 +13,9 @@ import android.widget.TextView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 
 public class ContactDetailActivity extends Activity {
     Contact contact;
@@ -102,6 +105,20 @@ public class ContactDetailActivity extends Activity {
         } else {
             favView.setImageResource(R.drawable.no_star);
         }
+
+        // Populate the rest of the data
+        TextView addressView = (TextView) this.findViewById(R.id.contact_detail_address);
+        TextView cityView = (TextView) this.findViewById(R.id.contact_detail_city);
+        TextView birthdayView = (TextView) this.findViewById(R.id.contact_detail_birthday);
+        TextView emailView = (TextView) this.findViewById(R.id.contact_detail_email);
+
+        addressView.setText(contactDetail.getAddress().getStreet());
+        cityView.setText(contactDetail.getAddress().getCity() + ", " + contactDetail.getAddress().getState());
+
+        emailView.setText(contactDetail.getEmail());
+
+        DateFormat df = new SimpleDateFormat("MMMM d, y");
+        birthdayView.setText(df.format(contact.getBirthdate()));
 
     }
 

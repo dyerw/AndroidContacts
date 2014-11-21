@@ -2,8 +2,6 @@ package com.liamdyer.solsticecontacts;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.widget.ImageView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
